@@ -75,12 +75,21 @@
   };
 
   # programs.firefox.enable = true;
+  programs.git = {
+  	enable = true;
+	config = {
+		user.name = "rkluis";
+		user.email = "rkluis@hotmail.nl";
+		core.sshCommand = "ssh -i /etc/nixos/ssh-keys/github_id_ed25519 -F /dev/null";
+	};
+  };
+
+  environment.etc."ssh/github_id_ed25519".source = /etc/nixos/ssh-keys/github_id_ed25519;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
    environment.systemPackages = with pkgs; [
      neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     git
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
